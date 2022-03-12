@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+<body>
+<!--
+Обязательное задание.
+
+Необходимо реализовать четыре функции, каждая функция должна принимать по два
+числа и выполнять одну из операций (каждая функция выполняет одну из них):
+1. Сложение
+2. Разность
+3. Умножение
+4. Деление
+
+Необходимо сделать так, чтобы функция вернула число, например выражение
+`console.log(sum(2, 6));` должно вывести число 8 в консоль (sum - функция
+сложения в данном примере, ваши названия функций могут отличаться).
+
+Округлять значения, которые возвращают функции не нужно, однако, обратите
+внимание на разность, функция должна вычесть из большего числа меньшее, либо
+вернуть 0, если числа равны.
+
+Функциям всегда передаются корректные числа, проверки на NaN, Infinity делать
+не нужно.
+
+Необходимо для всех функций прописать комментарии jsdoc https://jsdoc.app/.
+-->
+<script>
+  "use strict";
+
+  const a = Number.parseInt(prompt("Input a"));
+  const b = Number.parseInt(prompt("Input b"));
+
+  console.log(sum(a, b));
+  console.log(diff(a, b));
+  console.log(mult(a, b));
+  console.log(div(a, b));
+
+  /**
+   * sum two numbers
+   * @param {Number} a - first number
+   * @param {Number} b - second number
+   */
+  function sum(a, b) {
+    return a + b;
+  }
+
+  /**
+   * difference of two numbers
+   * @param {Number} a - first number
+   * @param {Number} b - second number
+   */
+  function diff(a, b) {
+    return Math.abs(a - b);
+  }
+
+  /**
+   * Multiplicate two numbers
+   * @param {Number} a - first number
+   * @param {Number} b - second number
+   */
+  function mult(a, b) {
+    return a * b;
+  }
+
+  /**
+   * division two numbers
+   * @param {Number} a - first number
+   * @param {Number} b - second number
+   */
+  function div(a, b) {
+    return a / b;
+  }
+</script>
+</body>
+</html>
