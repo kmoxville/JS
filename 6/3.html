@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+  <style>
+    i {
+      font-size: 50px;
+    }
+    .golden {
+      color: gold;
+    }
+  </style>
+</head>
+<body>
+<!--
+Обязательное задание.
+
+Выполнить все задачи в теге script. Комментарии, в которых написаны задачи, не
+стирать, код с решением задачи пишем под комментарием.
+-->
+
+<div class="stars_container">
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+</div>
+
+<script>
+  "use strict";
+
+  /*
+  1. При наведении на любую из звезд, данной звезде должен ставиться класс
+  golden, также такой класс должен ставиться всем звездам до нее слева.
+  */
+  document.querySelectorAll('.stars_container')
+    .forEach((element) => {
+      // Задание 1
+      element.addEventListener('mouseover', (event) => {
+        const currentElement = event.target;
+
+        if (currentElement.nodeName !== 'I')
+          return;
+
+        currentElement.classList.add('golden');
+
+        setGoldenClassToSiblings(currentElement, true);
+        setGoldenClassToSiblings(currentElement, false);
+      });
+
+      // Задание 2
+      element.addEventListener('mouseleave', (event) => {
+        const allSiblings = event.target.children;
+        const currentElement = allSiblings[0];
+        
+        currentElement.classList.remove('golden');
+
+        setGoldenClassToSiblings(currentElement, false);
+      });
+    });
+
+  /*
+  2. Когда мы уводим курсор мыши от звезды, все поставленные классы из первого
+  задания должны быть удалены.
+
+  сделано в задании выше
+   */
+
+
+  /*
+  3. Когда мы переводим мышь от одной звезды к другой, у нас могут мигать
+  звезды (временно могут становиться черными). Почему так? Напишите словами.
+  Можем ли мы это исправить? Если да, то предложите решение.
+
+  В предложенном мной решении мигания нет, так как я привязываюсь к диву,
+  а не элементам I, зазоры в виде переносов строки в моем случае не играют роли
+  */
+
+/**
+ * Force stars to shine
+ * @param  {HTMLElement} currentElement star html element
+ * @param  {bool} isLeftDirection left ot right direction
+ */
+function setGoldenClassToSiblings(currentElement, isLeftDirection) {
+  const directionString = isLeftDirection ? 'previousElementSibling' : 'nextElementSibling'; 
+
+  while (currentElement[directionString] !== null) {
+    currentElement = currentElement[directionString];
+    if (isLeftDirection) {
+      currentElement.classList.add('golden');
+    } else {
+      currentElement.classList.remove('golden');
+    }
+  }
+}
+</script>
+</body>
+</html>
