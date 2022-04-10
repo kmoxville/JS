@@ -66,15 +66,18 @@ function addToBasket(id, name, price) {
 }
 
 function updateBasket() {
+    // clear busket
     basketEl.querySelectorAll('.cartItem')
         .forEach((element) => element.remove());
 
+    // add elements from array
     let totals = 0;
     cartItems.forEach((element) => {
         basketTotalEl.insertAdjacentHTML('beforebegin', element.toHTML());
         totals += element.getSum();
     });
 
+    // recalculate totals
     totalEl.innerText = totals;
 }
 
